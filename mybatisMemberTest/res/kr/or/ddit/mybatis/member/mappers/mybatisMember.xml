@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mymbatisMember">
+    <select id="getMemberIdCount" parameterType="string" resultType="int">
+        SELECT COUNT(*) CNT FROM MYMEMBER WHERE MEM_ID = #{mem_id}
+    </select>
+
+    <select id="getAllMember" resultType="kr.or.ddit.mvc.VO.MemberVO">
+        SELECT * FROM MYMEMBER ORDER BY 1
+    </select>
+
+    <insert id="insertMember" parameterType="kr.or.ddit.mvc.VO.MemberVO">
+        INSERT INTO MYMEMBER (MEM_ID, MEM_PASS, MEM_NAME, MEM_TEL, MEM_ADDR) 
+        VALUES (#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_tel}, #{mem_addr})
+    </insert>
+
+    <delete id="deleteMember" parameterType="string">
+        DELETE FROM MYMEMBER WHERE MEM_ID = #{mem_id}
+    </delete>
+
+    <update id="updateMember" parameterType="kr.or.ddit.mvc.VO.MemberVO">
+        UPDATE MYMEMBER 
+        SET MEM_PASS = #{mem_pass}, 
+        	MEM_NAME = #{mem_name}, 
+        	MEM_TEL = #{mem_tel}, 
+        	MEM_ADDR = #{mem_addr} 
+        WHERE MEM_ID = #{mem_id}
+    </update>
+</mapper>
